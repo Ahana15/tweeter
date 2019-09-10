@@ -1,0 +1,25 @@
+.tweet-text-area {
+  border-bottom: 5px solid black;
+    width: 100%;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    background-color: #f4f1ec;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.tweet-text-area:focus {
+  outline: none;
+}
+
+.tweet-submission-button {
+  font-family: bungee;
+  color: white;
+  background-color: #4056A1;
+}
+
+.counter {
+  float: right;
+  font-family: bungee;
+}

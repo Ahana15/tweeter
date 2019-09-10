@@ -1,20 +1,24 @@
 nav {
   height: 120px;
   background-color: #4056A1;
-  z-index: auto;
+  z-index: 1;
   color: #ffffff;
   position: fixed;
   top: 0;
   width: 100%;
+  padding: 1.5em;
 }
 
 .logo {
   font-family: 'Bungee', cursive;
   float: left;
 }
-.newTweet {
+.Write-new-tweet-description {
   float: right;
 }
-span {
-  padding: 1.5em;
-}
+
+/* #arrow {
+  float: right;
+  margin-top: 70px;
+
+} */

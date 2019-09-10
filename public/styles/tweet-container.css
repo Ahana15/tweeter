@@ -1,0 +1,49 @@
+.tweet-container {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.tweets:hover {
+  box-shadow: 10px 10px #b5b4d9; 
+}
+.tweets {
+  border: 3px solid black;
+}
+
+.tweets > header{
+display: flex;
+justify-content: space-between;
+font-size: 20px;
+padding: 1em;
+}
+
+.tweets > p{
+  width: 96%;
+  margin: 0 auto; 
+  font-size: 20px;
+  margin-bottom: 15px;
+
+}
+
+.tweets>footer{
+  margin-top: 10px;
+  width: 96%;
+  margin: 0 auto; 
+  border-top: 3px solid black;
+  margin-bottom: 10px;
+}
+
+.icons{
+  float: right;
+  font-size: 15px;
+  margin-top: 10px;
+  
+}
+
+.time {
+  font-size: 15px;
+  margin-top: 10px;
+
+}
+
+
+

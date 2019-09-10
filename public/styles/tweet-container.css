@@ -5,8 +5,12 @@
 .tweets:hover {
   box-shadow: 10px 10px #b5b4d9; 
 }
+.tweets:hover .Username{
+  display: flex;
+}
 .tweets {
   border: 3px solid black;
+  margin: 40px;
 }
 
 .tweets > header{
@@ -14,6 +18,15 @@ display: flex;
 justify-content: space-between;
 font-size: 20px;
 padding: 1em;
+}
+.tweets>header>div {
+  display: flex;
+  justify-content: space-between;
+
+}
+.Username {
+  display: none;
+  color: #b5b4d9;
 }
 
 .tweets > p{
@@ -42,6 +55,12 @@ padding: 1em;
 .time {
   font-size: 15px;
   margin-top: 10px;
+
+}
+
+.avatar {
+  width: 65px;
+  height: 65px;
 
 }
 

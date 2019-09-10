@@ -29,7 +29,19 @@ const data = [
     "created_at": 1461113959088
   }
 ];
+const daysAgo = (dateOfTweet) => {
 
+  let todaysDate = new Date();
+  let days = Math.floor(Math.abs((todaysDate.getTime() - dateOfTweet) / (1000 * 60 * 60 * 24)));
+  if (days < 7) {
+    return (`${days} days ago`);
+  } else {
+    return (new Date(dateOfTweet));
+
+  }
+
+
+};
 const renderTweets = (tweets) => {
   // loops through tweets
   // calls createTweetElement for each tweet
@@ -43,23 +55,27 @@ const renderTweets = (tweets) => {
 const createTweetElement = (tweet) => {
   let $tweet = `<article class="tweets">
   <header>
-    <p>${tweet.user.name}</p>
-    <p>${tweet.user.handle}</p>
+  <div>
+  <img src="${tweet.user.avatars}" class="avatar">
+  <p>${tweet.user.name}</p>
+  </div>
+  <p class = "Username">${tweet.user.handle}</p>
   </header>
   <p>${tweet.content.text}</p>
+
   
   <footer>
-    <span class="time">${tweet.created_at} days ago </span>
+    <span class="time">${daysAgo(tweet.created_at)}</span>
     <span class="icons"><i class="fa fa-flag" width="100px" height="100px"></i>
       <i class="fa fa-heart"></i>
       <i class="fa fa-retweet"></i></span>
   </footer>
 </article>`;
 
-
-
   return $tweet;
 };
+
+
 
 
 

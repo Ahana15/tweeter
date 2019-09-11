@@ -42,16 +42,29 @@ const createTweetElement = (tweet) => {
   return $tweet;
 };
 
+const validateUserInput = (input) => {
+  if (input === "") {
+    alert("Tweet field cannot be left blank");
+  } else if (input.length > 140) {
+    alert("Tweet cannot be more than 140 characters.");
+  }
 
+  return true;
+};
 
 const getUserTweetInput = () => {
   const input = $('.tweet-text-area');
+
   return input.serialize();
 };
 
 $('#compose-tweet').submit((event) => {
   event.preventDefault();
-  $.ajax('/tweets/', { method: 'POST', data: getUserTweetInput() });
+  const input = $('textarea').val();
+
+  if (validateUserInput(input)) {
+    $.ajax('/tweets/', { method: 'POST', data: getUserTweetInput() });
+  }
 });
 
 const loadTweets = async () => {

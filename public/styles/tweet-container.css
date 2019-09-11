@@ -12,6 +12,7 @@
 .tweets {
   border: 3px solid black;
   margin: 40px;
+  overflow-wrap: break-word;
 }
 
 .tweets > header{

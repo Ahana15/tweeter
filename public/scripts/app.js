@@ -3,6 +3,11 @@
 //  * jQuery is already loaded
 //  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
 //  */
+const escape = function (str) {
+  let div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
 
 const daysAgo = (dateOfTweet) => {
 
@@ -30,14 +35,14 @@ const createTweetElement = (tweet) => {
   let $tweet = `<article class="tweets">
   <header>
   <div>
-  <img src="${tweet.user.avatars}" class="avatar">
-  <p>${tweet.user.name}</p>
+  <img src="${escape(tweet.user.avatars)}" class="avatar">
+  <p>${escape(tweet.user.name)}</p>
   </div>
-  <p class = "Username">${tweet.user.handle}</p>
+  <p class = "Username">${escape(tweet.user.handle)}</p>
   </header>
-  <p>${tweet.content.text}</p>
+  <p>${escape(tweet.content.text)}</p>
   <footer>
-    <span class="time">${daysAgo(tweet.created_at)}</span>
+    <span class="time">${daysAgo(escape(tweet.created_at))}</span>
     <span class="icons"><i class="fa fa-flag" width="100px" height="100px"></i>
       <i class="fa fa-heart"></i>
       <i class="fa fa-retweet"></i></span>

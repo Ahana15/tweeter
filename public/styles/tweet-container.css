@@ -8,6 +8,7 @@
 .tweets:hover .Username{
   display: flex;
 }
+
 .tweets {
   border: 3px solid black;
   margin: 40px;
@@ -19,7 +20,7 @@ justify-content: space-between;
 font-size: 20px;
 padding: 1em;
 }
-.tweets>header>div {
+.tweets > header > div {
   display: flex;
   justify-content: space-between;
 
@@ -37,7 +38,7 @@ padding: 1em;
 
 }
 
-.tweets>footer{
+.tweets > footer{
   margin-top: 10px;
   width: 96%;
   margin: 0 auto; 

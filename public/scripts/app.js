@@ -4,31 +4,6 @@
 //  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
 //  */
 
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd"
-    },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  }
-];
 const daysAgo = (dateOfTweet) => {
 
   let todaysDate = new Date();
@@ -37,19 +12,13 @@ const daysAgo = (dateOfTweet) => {
     return (`${days} days ago`);
   } else {
     return (new Date(dateOfTweet));
-
   }
-
-
 };
+
 const renderTweets = (tweets) => {
-  // loops through tweets
-  // calls createTweetElement for each tweet
-  // takes return value and appends it to the tweets container
   for (let tweet of tweets) {
     $("#tweet-container").append(createTweetElement(tweet));
   }
-
 };
 
 const createTweetElement = (tweet) => {
@@ -62,8 +31,6 @@ const createTweetElement = (tweet) => {
   <p class = "Username">${tweet.user.handle}</p>
   </header>
   <p>${tweet.content.text}</p>
-
-  
   <footer>
     <span class="time">${daysAgo(tweet.created_at)}</span>
     <span class="icons"><i class="fa fa-flag" width="100px" height="100px"></i>
@@ -77,6 +44,22 @@ const createTweetElement = (tweet) => {
 
 
 
+const getUserTweetInput = () => {
+  const input = $('.tweet-text-area');
+  return input.serialize();
+};
 
+$('#compose-tweet').submit((event) => {
+  event.preventDefault();
+  $.ajax('/tweets/', { method: 'POST', data: getUserTweetInput() });
+});
 
-renderTweets(data);
+// const loadTweets = () => {
+//   const $button = $('.tweet-submission-button');
+//   $button.on('click', function (event) {
+//     event.preventDefault();
+//     $.ajax('/tweets/', { method: 'GET', data: renderTweets() });
+
+//   });
+
+// };

@@ -16,13 +16,32 @@ nav {
 .Write-new-tweet-description {
   float: right;
 }
+
+@keyframes bounce {
+  0% {
+transform: translate(0, 5px);
+}
+
+50%{
+transform: translate(5px, 0); 
+}
+
+/* 75%{
+transform:  translate(0px, -25px); 
+}
+
+100% {
+transform: translate(0px, 0px);
+} */
+}
+
 .arrows {
   display: block;
   cursor: pointer;
   color: red;
   text-align: center;
+  animation: bounce 0.5s infinite;
 }
-
 /* #arrow {
   float: right;
   margin-top: 70px;

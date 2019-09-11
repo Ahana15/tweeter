@@ -18,9 +18,22 @@
   font-family: bungee;
   color: white;
   background-color: #4056A1;
+ 
 }
 
 .counter {
   float: right;
   font-family: bungee;
 }
+
+.error {
+  
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  color: red; 
+  font-size: 25px;
+  display: none;
+
+}
+

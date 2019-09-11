@@ -18,6 +18,7 @@ nav {
 }
 .arrows {
   cursor: pointer;
+  color: red;
 }
 
 /* #arrow {

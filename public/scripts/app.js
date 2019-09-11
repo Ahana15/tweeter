@@ -42,7 +42,7 @@ const createTweetElement = (tweet) => {
   </header>
   <p>${escape(tweet.content.text)}</p>
   <footer>
-    <span class="time">${daysAgo(escape(tweet.created_at))}</span>
+    <span class="time">${escape(daysAgo(tweet.created_at))}</span>
     <span class="icons"><i class="fa fa-flag" width="100px" height="100px"></i>
       <i class="fa fa-heart"></i>
       <i class="fa fa-retweet"></i></span>
@@ -52,19 +52,22 @@ const createTweetElement = (tweet) => {
   return $tweet;
 };
 
-const validateUserInput = (input) => {
-  if (input === "") {
-    alert("Tweet field cannot be left blank");
-  } else if (input.length > 140) {
-    alert("Tweet cannot be more than 140 characters.");
-  }
+// const validateUserInput = (input) => {
+//   if (input === "") {
+//     $('.error').text('Tweet field cannot be left blank.');
+//     $('.error').show();
 
-  return true;
-};
+
+//   } else if (input.length > 140) {
+//     $('.error').text('Tweet cannot be more than 140 characters.');
+//     $('.error').show();
+
+//   }
+//   return true;
+// };
 
 const getUserTweetInput = () => {
   const input = $('.tweet-text-area');
-
   return input.serialize();
 };
 
@@ -82,12 +85,31 @@ $('#compose-tweet').submit(async (event) => {
   event.preventDefault();
   const input = $('textarea').val();
 
-  if (validateUserInput(input)) {
+  if (input === "") {
+    $('.error').text('❗️🙄Tweet field cannot be left blank. 🙄❗️');
+    // $('.error').show();
+    $('.error').slideDown();
+
+
+  } else if (input.length > 140) {
+    $('.error').text('❗️🙄Tweet cannot be more than 140 characters.🙄❗️');
+    // $('.error').show();
+    $('.error').slideDown();
+
+  } else {
+    if ($('p').hasClass('error')) {
+      // $('.error').hide();
+      $('.error').slideUp();
+
+    }
     await $.ajax('/tweets/', { method: 'POST', data: getUserTweetInput() });
     loadCurrentTweet();
 
+    $('.tweet-text-area').val("");
+    $('.tweet-text-area').keyup();
 
   }
+
 });
 
 $(".arrows").click(() => {

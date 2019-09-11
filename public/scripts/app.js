@@ -52,19 +52,20 @@ const createTweetElement = (tweet) => {
   return $tweet;
 };
 
-// const validateUserInput = (input) => {
-//   if (input === "") {
-//     $('.error').text('Tweet field cannot be left blank.');
-//     $('.error').show();
+const validateUserInput = (input) => {
+  if (input === "") {
+    $('.error').text('❗️🙄Tweet field cannot be left blank. 🙄❗️');
+    $('.error').slideDown();
+    return false;
+  } else if (input.length > 140) {
+    $('.error').text('❗️🙄Tweet cannot be more than 140 characters.🙄❗️');
+    $('.error').slideDown();
+    return false;
+  } else {
+    return true;
+  }
 
-
-//   } else if (input.length > 140) {
-//     $('.error').text('Tweet cannot be more than 140 characters.');
-//     $('.error').show();
-
-//   }
-//   return true;
-// };
+};
 
 const getUserTweetInput = () => {
   const input = $('.tweet-text-area');
@@ -77,7 +78,6 @@ const loadCurrentTweet = async () => {
     type: 'GET',
   });
 
-
   renderTweets(response[(response.length) - 1]);
 };
 
@@ -85,23 +85,25 @@ $('#compose-tweet').submit(async (event) => {
   event.preventDefault();
   const input = $('textarea').val();
 
-  if (input === "") {
-    $('.error').text('❗️🙄Tweet field cannot be left blank. 🙄❗️');
-    // $('.error').show();
-    $('.error').slideDown();
+  // if (input === "") {
+  //   $('.error').text('❗️🙄Tweet field cannot be left blank. 🙄❗️');
+  //   // $('.error').show();
+  //   $('.error').slideDown();
 
 
-  } else if (input.length > 140) {
-    $('.error').text('❗️🙄Tweet cannot be more than 140 characters.🙄❗️');
-    // $('.error').show();
-    $('.error').slideDown();
+  // } else if (input.length > 140) {
+  //   $('.error').text('❗️🙄Tweet cannot be more than 140 characters.🙄❗️');
+  //   // $('.error').show();
+  //   $('.error').slideDown();
 
-  } else {
+  // } else {
+  if (validateUserInput(input)) {
+
     if ($('p').hasClass('error')) {
       // $('.error').hide();
       $('.error').slideUp();
-
     }
+
     await $.ajax('/tweets/', { method: 'POST', data: getUserTweetInput() });
     loadCurrentTweet();
 
@@ -109,6 +111,7 @@ $('#compose-tweet').submit(async (event) => {
     $('.tweet-text-area').keyup();
 
   }
+
 
 });
 

@@ -17,8 +17,10 @@ nav {
   float: right;
 }
 .arrows {
+  display: block;
   cursor: pointer;
   color: red;
+  text-align: center;
 }
 
 /* #arrow {

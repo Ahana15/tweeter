@@ -26,6 +26,15 @@ body {
   margin: 0 auto;
 }
 
+.fa-arrow-circle-up {
+  font-size: 40px;
+    position: fixed;
+    bottom: 0px;
+    right: 20px;
+    color: salmon;
+
+}
+
 
 
 

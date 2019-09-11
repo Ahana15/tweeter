@@ -3,6 +3,8 @@
 //  * jQuery is already loaded
 //  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
 //  */
+// const moment = require('./moment');
+
 const escape = function (str) {
   let div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
@@ -85,9 +87,7 @@ $('#compose-tweet').submit(async (event) => {
 
 });
 
-$(".arrows").click(() => {
-  $(".new-tweet").slideToggle();
-});
+
 
 const loadTweets = async () => {
   const response = await $.ajax({
@@ -97,4 +97,20 @@ const loadTweets = async () => {
   renderTweets(response);
 };
 
+$(".arrows").click(() => {
+  $(".new-tweet").slideToggle();
+});
+$(window).scroll(function () {
+  if ($(this).scrollTop() > 300) { // 300px from top
+    $('.fa-arrow-circle-up').fadeIn();
+  } else {
+    $('.fa-arrow-circle-up').fadeOut();
+  }
+});
+$(".fa-arrow-circle-up").click(() => {
+  $('.new-tweet').slideDown();
+  $("html, body").animate({ scrollTop: 0 }, 200);
+});
 
+
+loadTweets();

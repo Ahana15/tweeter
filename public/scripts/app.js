@@ -21,14 +21,10 @@ const daysAgo = (dateOfTweet) => {
 };
 
 const renderTweets = (tweets) => {
-  if (Array.isArray(tweets)) {
-    for (let tweet of tweets) {
-      $("#tweet-container").prepend(createTweetElement(tweet));
-    }
-  } else {
-    $("#tweet-container").prepend(createTweetElement(tweets));
+  $("#tweet-container").empty();
+  for (let tweet of tweets) {
+    $("#tweet-container").prepend(createTweetElement(tweet));
   }
-
 };
 
 const createTweetElement = (tweet) => {
@@ -72,46 +68,20 @@ const getUserTweetInput = () => {
   return input.serialize();
 };
 
-const loadCurrentTweet = async () => {
-  const response = await $.ajax({
-    url: '/tweets/',
-    type: 'GET',
-  });
-
-  renderTweets(response[(response.length) - 1]);
-};
 
 $('#compose-tweet').submit(async (event) => {
   event.preventDefault();
   const input = $('textarea').val();
 
-  // if (input === "") {
-  //   $('.error').text('❗️🙄Tweet field cannot be left blank. 🙄❗️');
-  //   // $('.error').show();
-  //   $('.error').slideDown();
-
-
-  // } else if (input.length > 140) {
-  //   $('.error').text('❗️🙄Tweet cannot be more than 140 characters.🙄❗️');
-  //   // $('.error').show();
-  //   $('.error').slideDown();
-
-  // } else {
   if (validateUserInput(input)) {
-
     if ($('p').hasClass('error')) {
-      // $('.error').hide();
       $('.error').slideUp();
     }
-
     await $.ajax('/tweets/', { method: 'POST', data: getUserTweetInput() });
-    loadCurrentTweet();
-
     $('.tweet-text-area').val("");
     $('.tweet-text-area').keyup();
-
+    loadTweets();
   }
-
 
 });
 
@@ -128,4 +98,3 @@ const loadTweets = async () => {
 };
 
 
-loadTweets();

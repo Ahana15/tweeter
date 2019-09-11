@@ -54,12 +54,12 @@ $('#compose-tweet').submit((event) => {
   $.ajax('/tweets/', { method: 'POST', data: getUserTweetInput() });
 });
 
-// const loadTweets = () => {
-//   const $button = $('.tweet-submission-button');
-//   $button.on('click', function (event) {
-//     event.preventDefault();
-//     $.ajax('/tweets/', { method: 'GET', data: renderTweets() });
+const loadTweets = async () => {
+  const response = await $.ajax({
+    url: '/tweets/',
+    type: 'GET',
+  });
+  renderTweets(response);
+};
 
-//   });
-
-// };
+loadTweets();

@@ -16,6 +16,9 @@ nav {
 .Write-new-tweet-description {
   float: right;
 }
+.arrows {
+  cursor: pointer;
+}
 
 /* #arrow {
   float: right;

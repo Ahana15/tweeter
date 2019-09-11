@@ -90,6 +90,10 @@ $('#compose-tweet').submit(async (event) => {
   }
 });
 
+$(".arrows").click(() => {
+  $(".new-tweet").slideToggle();
+});
+
 const loadTweets = async () => {
   const response = await $.ajax({
     url: '/tweets/',

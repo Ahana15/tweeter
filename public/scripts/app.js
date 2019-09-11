@@ -8,7 +8,7 @@ const daysAgo = (dateOfTweet) => {
 
   let todaysDate = new Date();
   let days = Math.floor(Math.abs((todaysDate.getTime() - dateOfTweet) / (1000 * 60 * 60 * 24)));
-  if (days < 7) {
+  if (days < 7 && days > 1) {
     return (`${days} days ago`);
   } else {
     return (new Date(dateOfTweet));
@@ -16,9 +16,14 @@ const daysAgo = (dateOfTweet) => {
 };
 
 const renderTweets = (tweets) => {
-  for (let tweet of tweets) {
-    $("#tweet-container").append(createTweetElement(tweet));
+  if (Array.isArray(tweets)) {
+    for (let tweet of tweets) {
+      $("#tweet-container").prepend(createTweetElement(tweet));
+    }
+  } else {
+    $("#tweet-container").prepend(createTweetElement(tweets));
   }
+
 };
 
 const createTweetElement = (tweet) => {
@@ -58,12 +63,25 @@ const getUserTweetInput = () => {
   return input.serialize();
 };
 
-$('#compose-tweet').submit((event) => {
+const loadCurrentTweet = async () => {
+  const response = await $.ajax({
+    url: '/tweets/',
+    type: 'GET',
+  });
+
+
+  renderTweets(response[(response.length) - 1]);
+};
+
+$('#compose-tweet').submit(async (event) => {
   event.preventDefault();
   const input = $('textarea').val();
 
   if (validateUserInput(input)) {
-    $.ajax('/tweets/', { method: 'POST', data: getUserTweetInput() });
+    await $.ajax('/tweets/', { method: 'POST', data: getUserTweetInput() });
+    loadCurrentTweet();
+
+
   }
 });
 
@@ -74,5 +92,6 @@ const loadTweets = async () => {
   });
   renderTweets(response);
 };
+
 
 loadTweets();

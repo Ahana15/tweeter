@@ -7,9 +7,9 @@ $(document).scroll(function () {
   }
 });
 
-$(".fa-arrow-circle-up").click(() => {
+$('.fa-arrow-circle-up').click(() => {
   $('.new-tweet').slideDown();
-  $("html, body").animate({ scrollTop: 0 }, 200);
+  $('html, body').animate({ scrollTop: 0 }, 200);
   $('.tweet-text-area').focus();
 
 });

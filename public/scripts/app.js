@@ -24,9 +24,9 @@ const daysAgo = (tweetDate) => {
 };
 
 const renderTweets = (tweets) => {
-  $("#tweet-container").empty();
+  $('#tweet-container').empty();
   for (let tweet of tweets) {
-    $("#tweet-container").prepend(createTweetElement(tweet));
+    $('#tweet-container').prepend(createTweetElement(tweet));
   }
 };
 
@@ -61,7 +61,7 @@ const loadTweets = async () => {
 };
 
 const validateUserInput = (input) => {
-  if (input === "") {
+  if (input === '') {
     $('.error').text('❗️🙄Tweet field cannot be left blank. 🙄❗️');
     $('.error').slideDown();
     return false;
@@ -87,14 +87,14 @@ $('#compose-tweet').submit(async (event) => {
       $('.error').slideUp();
     }
     await $.ajax('/tweets/', { method: 'POST', data: getSerializedUserInput() });
-    $('.tweet-text-area').val("");
+    $('.tweet-text-area').val('');
     $('.tweet-text-area').keyup();
     loadTweets();
   }
 });
 
-$(".arrows").click(() => {
-  $(".new-tweet").slideToggle();
+$('.arrows').click(() => {
+  $('.new-tweet').slideToggle();
   $('.tweet-text-area').focus();
 });
 

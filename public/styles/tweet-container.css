@@ -8,6 +8,9 @@
 .tweets:hover .Username{
   display: flex;
 }
+.tweets:hover .icons{
+  display: inline;
+}
 
 .tweets {
   border: 3px solid black;
@@ -51,7 +54,7 @@ padding: 1em;
   float: right;
   font-size: 15px;
   margin-top: 10px;
-  
+  display: none;
 }
 
 .time {

@@ -29,13 +29,16 @@
 }
 
 .error {
-  
   width: 90%;
   margin: 0 auto;
   text-align: center;
-  color: red; 
-  font-size: 25px;
+  color: salmon; 
+  font-size: 23px;
   display: none;
 
+}
+
+.new-tweet {
+  display :none;
 }
 

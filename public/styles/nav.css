@@ -1,12 +1,15 @@
 nav {
   height: 120px;
-  background-color: #4056A1;
+  
+  
   z-index: 1;
   color: #ffffff;
   position: fixed;
   top: 0;
   width: 100%;
   padding: 1.5em;
+  background-color: #4056A1;
+    
 }
 
 .logo {
@@ -36,7 +39,7 @@ transform:  translate(0px, 10px);
   cursor: pointer;
   color: red;
   text-align: center;
-  animation: bounce 0.65s infinite;
+  animation: bounce 0.85s infinite;
 }
 /* #arrow {
   float: right;

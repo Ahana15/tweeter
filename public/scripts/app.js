@@ -95,10 +95,11 @@ $('#compose-tweet').submit(async (event) => {
 
 $(".arrows").click(() => {
   $(".new-tweet").slideToggle();
+  $('.tweet-text-area').focus();
 });
 
-$(window).scroll(function () {
-  if ($(this).scrollTop() > 300) { // 300px from top
+$(document).scroll(function () {
+  if ($(this).scrollTop() > 500) { // 300px from top
     $('.fa-arrow-circle-up').fadeIn();
   } else {
     $('.fa-arrow-circle-up').fadeOut();

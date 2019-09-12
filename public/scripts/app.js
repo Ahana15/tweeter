@@ -16,11 +16,10 @@ const daysLessThanSeven = (tweetDate) => {
 };
 
 const daysAgo = (tweetDate) => {
-
   if (daysLessThanSeven(tweetDate)) {
     return `<span class="time" data-livestamp="${tweetDate / 1000}"></span>`;
   } else {
-    return `<span class="time">${moment(tweetDate).format('MMMM Do YYYY, h:mm:ss a')}</span>`;
+    return `<span class="time">${moment(tweetDate).format('MMMM Do YYYY, h:mm a')}</span>`;
   }
 };
 
@@ -43,7 +42,7 @@ const createTweetElement = (tweet) => {
       </header>
       <p>${escape(tweet.content.text)}</p>
       <footer>
-        ${daysAgo(tweet.created_at)}
+        ${daysAgo(Number(escape(tweet.created_at)))}
         <span class="icons"><i class="fa fa-flag" width="100px" height="100px"></i>
           <i class="fa fa-heart"></i>
           <i class="fa fa-retweet"></i></span>

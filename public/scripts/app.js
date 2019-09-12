@@ -11,17 +11,17 @@ const escape = function (str) {
   return div.innerHTML;
 };
 
+const daysLessThanSeven = (tweetDate) => {
+  return (Date.now() >= tweetDate && tweetDate > (Date.now() - 604800000));
+};
+
 const daysAgo = (tweetDate) => {
 
-  // console.log(moment(tweetDate).fromNow());
-  // let todaysDate = new Date();
-  // let days = Math.floor(Math.abs((todaysDate.getTime() - tweetDate) / (1000 * 60 * 60 * 24)));
-  // if (days < 7 && days > 1) {
-  //   return (`${days} days ago`);
-  // } else {
-  //   return (new Date(tweetDate));
-  // }
-  return moment(tweetDate).fromNow();
+  if (daysLessThanSeven(tweetDate)) {
+    return `<span class="time" data-livestamp="${tweetDate / 1000}"></span>`;
+  } else {
+    return `<span class="time">${moment(tweetDate).format('MMMM Do YYYY, h:mm:ss a')}</span>`;
+  }
 };
 
 const renderTweets = (tweets) => {
@@ -43,14 +43,13 @@ const createTweetElement = (tweet) => {
       </header>
       <p>${escape(tweet.content.text)}</p>
       <footer>
-        <span class="time">${escape(daysAgo(tweet.created_at))}</span>
+        ${daysAgo(tweet.created_at)}
         <span class="icons"><i class="fa fa-flag" width="100px" height="100px"></i>
           <i class="fa fa-heart"></i>
           <i class="fa fa-retweet"></i></span>
       </footer>
     </article>`
   );
-
   return $tweet;
 };
 
@@ -76,9 +75,8 @@ const validateUserInput = (input) => {
   }
 };
 
-const getUserTweetInput = () => {
-  const input = $('.tweet-text-area');
-  return input.serialize();
+const getSerializedUserInput = () => {
+  return $('.tweet-text-area').serialize();
 };
 
 $('#compose-tweet').submit(async (event) => {
@@ -89,7 +87,7 @@ $('#compose-tweet').submit(async (event) => {
     if ($('p').hasClass('error')) {
       $('.error').slideUp();
     }
-    await $.ajax('/tweets/', { method: 'POST', data: getUserTweetInput() });
+    await $.ajax('/tweets/', { method: 'POST', data: getSerializedUserInput() });
     $('.tweet-text-area').val("");
     $('.tweet-text-area').keyup();
     loadTweets();
@@ -110,8 +108,6 @@ $(window).scroll(function () {
 
 $(".fa-arrow-circle-up").click(() => {
   $('.new-tweet').slideDown();
-
-
   $("html, body").animate({ scrollTop: 0 }, 200);
   $('.tweet-text-area').focus();
 

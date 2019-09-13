@@ -5,7 +5,7 @@
 .tweets:hover {
   box-shadow: 10px 10px #b5b4d9; 
 }
-.tweets:hover .Username{
+.tweets:hover .username{
   display: flex;
 }
 .tweets:hover .icons{
@@ -29,7 +29,7 @@ padding: 1em;
   justify-content: space-between;
 
 }
-.Username {
+.username {
   display: none;
   color: #b5b4d9;
 }

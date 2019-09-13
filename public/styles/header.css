@@ -14,7 +14,6 @@ img.center {
   position: relative;
   width: 235px;
   height: 235px;
-
 }
 
 .name {
@@ -23,7 +22,7 @@ img.center {
   font-weight: 100;   
   font-size: larger;
 }
+
 .name span {
   font-weight: bold;
-
 }

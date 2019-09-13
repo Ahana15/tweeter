@@ -1,18 +1,12 @@
-// /*
-//  * Client-side JS logic goes here
-//  * jQuery is already loaded
-//  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
-//  */
-
-
-const escape = function (str) {
+const escape = (str) => {
   let div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 };
 
+const millisecondsIn7Days = 604800000;
 const daysLessThanSeven = (tweetDate) => {
-  return (Date.now() >= tweetDate && tweetDate > (Date.now() - 604800000));
+  return (Date.now() >= tweetDate && tweetDate > (Date.now() - millisecondsIn7Days));
 };
 
 const daysAgo = (tweetDate) => {
@@ -34,18 +28,20 @@ const createTweetElement = (tweet) => {
   let $tweet = (
     `<article class="tweets">
       <header>
-      <div>
-      <img src="${escape(tweet.user.avatars)}" class="avatar">
-      <p>${escape(tweet.user.name)}</p>
-      </div>
-      <p class = "Username">${escape(tweet.user.handle)}</p>
+        <div>
+          <img src="${escape(tweet.user.avatars)}" class="avatar">
+          <p>${escape(tweet.user.name)}</p>
+        </div>
+        <p class="username">${escape(tweet.user.handle)}</p>
       </header>
       <p>${escape(tweet.content.text)}</p>
       <footer>
         ${daysAgo(Number(escape(tweet.created_at)))}
-        <span class="icons"><i class="fa fa-flag" width="100px" height="100px"></i>
+        <span class="icons">
+          <i class="fa fa-flag" width="100px" height="100px"></i>
           <i class="fa fa-heart"></i>
-          <i class="fa fa-retweet"></i></span>
+          <i class="fa fa-retweet"></i>
+        </span>
       </footer>
     </article>`
   );
@@ -53,11 +49,15 @@ const createTweetElement = (tweet) => {
 };
 
 const loadTweets = async () => {
-  const response = await $.ajax({
-    url: '/tweets/',
-    type: 'GET',
-  });
-  renderTweets(response);
+  try {
+    const response = await $.ajax({
+      url: '/tweets/',
+      type: 'GET',
+    });
+    renderTweets(response);
+  } catch (error) {
+    console.log('ERROR', error);
+  }
 };
 
 const validateUserInput = (input) => {
